@@ -75,7 +75,7 @@ const displayTask = (button, timeOfDay) => {
 
   const dateColumn = document.createElement('div');
   dateColumn.classList.add('col-6');
-  dateColumn.innerText = `${task} ${timeString}`;
+  dateColumn.innerText = `${dateString} ${timeString}`;
 
   const taskColumn = document.createElement('div');
   taskColumn.classList.add('col-6');

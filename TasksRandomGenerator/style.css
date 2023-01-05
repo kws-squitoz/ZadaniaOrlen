@@ -4,7 +4,7 @@
   height: 100%;
 }
 body {
-  background-image: url('/img/orlen.png');
+  background-image: url('/TasksRandomGenerator/img/orlen.png');
   background-repeat: no-repeat;  /* Do not repeat the image */
   background-position: center;  /* Center the image */
   background-position: top;
