@@ -11,11 +11,30 @@
 <body>
   <div class="space"></div>
   <!-- Buttons -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Zadania Orleniarzy</a>
+    <button id="navbarToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item  ">
+          <a class="nav-link" href="po-co-zadania.html">Po co są zadania?</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="how-to-clean.html">Jak je robić? Jak korzystać ze strony?</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="complaints.html">Zażalenia do zadań</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <div class="text-center">
-      <button type="button" id="dayButton" class="btn btn-success text ">Wylosuj zadanie na dniówke (A/12)</button>
-     <button type="button" id="dayButton2" class="btn btn-success ">Wylosuj zadanie na dniówke (2/8)</button>
-    <button type="button" id="nightButton" class="btn btn-dark ">Wylosuj zadanie na nocke (B/12)</button>
-    <button type="button" id="nightButton2" class="btn btn-dark ">Wylosuj zadanie na nocke (2/8)</button>
+      <button type="button" id="dayButton" class="btn btn-info text ">Wylosuj zadanie na dniówke (A/12)</button>
+     <button type="button" id="dayButton2" class="btn btn-info ">Wylosuj zadanie na dniówke (1/8)</button>
+    <button type="button" id="nightButton2" class="btn btn-danger ">Wylosuj zadanie na zmiane (2/8)</button>
+    <button type="button" id="nightButton" class="btn btn-danger ">Wylosuj zadanie na nocke  (B/12)</button>
   </div>
 
   <script src="app.js"></script>
