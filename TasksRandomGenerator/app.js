@@ -14,7 +14,6 @@ let drawnTasks = {
 };
 
 function drawTask(timeOfDay) {
-  // Sprawdzam czy zostały jescze jakieś taski jeśli nie wysylam komunikat
   if (tasks[timeOfDay].length === 0) {
     alert('Niestety nie ma już wiecej zadań do zrobienia,Wiola wszystko zrobiła już,odpocznij sobie ;)');
     return;
@@ -25,7 +24,7 @@ function drawTask(timeOfDay) {
 
   const task = tasks[timeOfDay][index];
 
-  // Wybrane zadanie usuwam z puli żeby się nie dublowały zadania
+  // Wybrane zadanie usuwam z puli żeby się nie dublowały zadania slice usuwa
   tasks[timeOfDay] = tasks[timeOfDay].slice
   
   (0, index).concat(tasks[timeOfDay].slice(index + 1));
@@ -46,19 +45,27 @@ const dayButton2 = document.getElementById('dayButton2');
 const nightButton = document.getElementById('nightButton');
 const nightButton2 = document.getElementById('nightButton2');
 
+
+
 dayButton.addEventListener('click', () => {
+  if (confirm('Czy na pewno chcesz wylosować zadanie?'))
   displayTask(dayButton, 'day');
+  else("")
+
 });
 
 dayButton2.addEventListener('click', () => {
+  if(confirm('Czy na pewno chcesz wylosować zadanie?'))
   displayTask(dayButton2, 'day2');
 });
 
 nightButton.addEventListener('click', () => {
+  if(confirm('Czy na pewno chcesz wylosować zadanie?'))
   displayTask(nightButton, 'night');
 });
 
 nightButton2.addEventListener('click', () => {
+  if(confirm('Czy na pewno chcesz wylosować zadanie?'))
   displayTask(nightButton2, 'night2');
 });
 const displayTask = (button, timeOfDay) => {
@@ -87,7 +94,7 @@ const displayTask = (button, timeOfDay) => {
 checkbox.type = 'checkbox';
   // CHECKBOX RESETUJE ZADANIE CO MIESIAC
   const resetTask = (timeOfDay, task) => {
-  // Add the task back to the tasks table
+  // Add the task back to the tasks table   
   tasks[timeOfDay].push(task);
 
   // Remove the task from the list of temporarily drawn tasks
@@ -110,7 +117,7 @@ checkbox.addEventListener('click', () => {
   // append the task row after the button
   button.after(taskRow);
 };
-
+// toggler navbar
 const navbarToggler = document.getElementById('navbarToggler');
 const navbarNav = document.getElementById('navbarNav');
 
@@ -129,6 +136,8 @@ navLinks.forEach((link) => {
     link.parentElement.classList.add('current-page');
   }
 });
+
+// COMPLAINTS
 function addComplaint() {
   // Get the complaint message from the textarea
   var complaintMessage = document.getElementById('complaintMessage').value;
