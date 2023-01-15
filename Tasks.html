@@ -11,19 +11,20 @@
    crossorigin="anonymous">
   <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-database.js"></script> 
-  <script  src="firebase.js"></script>
+  <script async src="firebase.js"></script>
   <link rel="stylesheet" href="style.css">
+  <script async src="tasks2.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand " href="index.html"><span class="text-danger p-2">Zadania</span> Orleniarzy</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand " href="index.html"><span class="text-danger p-2">Zadania</span> Orleniarzy</a>
     <button id="navbarToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav p-3 ml-auto">
         <li class="nav-item  ">
-          <a class="nav-link" href="Tasks.html">Zadania</a>
+          <a class="nav-link text-danger" href="Tasks.html">Zadania</a>
         </li>
         <li class="nav-item  ">
           <a class="nav-link" href="po-co-zadania.html">Po co są zadania?</a>
@@ -37,12 +38,15 @@
       </ul>
     </div>
   </nav>
-  <!-- <div class="text-center">
-      <button type="button" id="dayButton" class="btn btn-info text ">Wylosuj zadanie na dniówke (A/12)</button>
-     <button type="button" id="dayButton2" class="btn btn-info ">Wylosuj zadanie na dniówke (1/8)</button>
-    <button type="button" id="nightButton2" class="btn btn-danger ">Wylosuj zadanie na zmiane (2/8)</button>
-    <button type="button" id="nightButton" class="btn btn-danger ">Wylosuj zadanie na nocke  (B/12)</button>
-  </div> -->
-  <script src="Tasks.js"></script>
+  <div class="text-center buttons m-5">
+    <button type="button" id="dayButton" class="btn btn-danger">Wylosuj zadanie na dniówke (A/12)</button>
+    <div id="taskListDay"></div> 
+    <button type="button" id="dayButton2" class="btn btn-danger ">Wylosuj zadanie na dniówke (1/8)</button>
+    <div id="taskListDay2"></div>
+    <button type="button" id="nightButton" class="btn btn-dark ">Wylosuj zadanie na zmiane (2/8)</button>
+    <div id="taskListnight"></div>
+    <button type="button" id="nightButton2" class="btn btn-dark ">Wylosuj zadanie na nocke  (B/12)</button>
+    <div id="taskListnight2"></div>
+</div>
 </body>
 </html>

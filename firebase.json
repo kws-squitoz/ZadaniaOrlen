@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "strona2",
     "ignore": [
       "firebase.json",
       "**/.*",

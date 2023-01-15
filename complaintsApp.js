@@ -9,7 +9,6 @@ navbarToggler.addEventListener('click', function() {
   }
 });
 // COMPLAINTS
-
 // Get a reference to the Firebase database
 var database = firebase.database();
 
@@ -68,14 +67,12 @@ function displayComplaints() {
       newRow.appendChild(messageCell);
 
       // Add the new row to the table
-      complaintsTable.appendChild(newRow);
+      complaintsTable.insertBefore(newRow, complaintsTable.firstChild);
     }
   });
 }
 
-// Call the displayComplaints function when the page loads
 window.onload = displayComplaints;
 
-
-
+// Call the displayComplaints function when the page loads
   

@@ -13,42 +13,38 @@
   <link rel="stylesheet" href="style.css">
 </head>
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">Zadania Orleniarzy</a>
-    <button id="navbarToggler"
-     class="navbar-toggler"
-      type="button" 
-      data-bs-toggle="collapse"
-       data-bs-target="#navbarNav"
-        aria-controls="navbarNav" 
-        aria-expanded="false" 
-        aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item  ">
-          <a class="nav-link" href="po-co-zadania.html">Po co są zadania?</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="how-to-clean.html">Jak je robić? Jak korzystać ze strony?</a>
-        </li>
-        <li class="nav-item current-page">
-          <a class="nav-link" href="complaints.html">Zażalenia  do zadań</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand " href="index.html"><span class="text-danger p-2">Zadania</span> Orleniarzy</a>
+      <button id="navbarToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav p-3 ml-auto">
+          <li class="nav-item  ">
+            <a class="nav-link" href="Tasks.html">Zadania</a>
+          </li>
+          <li class="nav-item  ">
+            <a class="nav-link" href="po-co-zadania.html">Po co są zadania?</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="how-to-clean.html">Jak je robić? Jak korzystać ze strony?</a>
+          </li>
+          <li class="nav-item current-page">
+            <a class="nav-link text-danger" href="complaints.html">Zażalenia  do zadań</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  <div class="container-fluid mt-5">
     <h3 class="display-5">Miejsce na twoje uwagi</h3>
     <form>
       <div class="form-group">
         <label for="complaintMessage">Miejsce na twój komentarz:</label>
-        <textarea class="form-control" id="complaintMessage" rows="3"></textarea>
+        <textarea class="form-control" id="complaintMessage" rows="3" required></textarea>
       </div>
       <button type="button" 
       onclick="addComplaint()" 
-      class="btn btn-primary">Zatwierdz</button>
+      class="btn btn-primary">Wyślij</button>
     </form>
     <h4 class="mt-5">Wasze uwagi</h4>
     <div class="table-responsive">
@@ -59,7 +55,7 @@
           <th>Treść</th>
         </tr>
       </thead>
-      <tbody id="complaintsTable">
+      <tbody id="complaintsTable"class="box" >
         <!-- Complaints will be added here -->
       </tbody>
     </table>
