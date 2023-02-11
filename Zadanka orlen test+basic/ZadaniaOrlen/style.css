@@ -1,0 +1,54 @@
+body{
+   max-width: 100%;
+ }
+ #taskList {
+   width: 50%;
+   margin: 0 auto; 
+   display: flex;
+ }
+ *{
+   margin: 0;
+   box-sizing: border-box;
+   padding: 0;
+ }
+ .current-page a {
+   font-weight: bold;
+ }
+ .col-6{
+   text-align: center;
+   border-bottom:1px solid #654f4f;;
+   margin: 5px 0;
+ }
+ .btn{
+   margin-top: 10px;
+   margin-bottom: 5px;
+ }
+  .col-1{
+   display: flex;
+   align-items: center;
+   
+ }
+ .col-3{
+   display: flex;
+   align-items: center;
+ }
+ 
+ .navbar-brand{
+   font-size: 24px;
+ }
+ #taskListDay{
+  align-items: center;
+  line-height: 2.4;
+ }
+ #taskListDay2{
+  align-items: center;
+  line-height: 2.4;
+ }
+ #taskListnight{
+  align-items: center;
+  line-height: 2.4;
+ }
+ #taskListnight2{
+  align-items: center;
+  line-height: 2.4;
+ }

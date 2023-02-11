@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "strona2",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

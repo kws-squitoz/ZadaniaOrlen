@@ -1,0 +1,50 @@
+.navbar-brand{
+  font-size: 24px;
+}
+body{
+   max-width: 100%;
+ }
+ *{
+   margin: 0;
+   box-sizing: border-box;
+   padding: 0;
+ }
+ .current-page a {
+   font-weight: bold;
+ }
+ .btn{
+   margin-top: 10px;
+   margin-bottom: 5px;
+ }
+  /* .col-8{
+   text-align: center;
+   border-bottom:1px solid #654f4f;;
+ }  */
+ /* .col-2{
+   display: flex;
+   align-items: center;
+ } */
+  /* .col-1{
+   display: flex;
+   align-items: center;
+ } */
+
+ /* #taskListDay{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  line-height: 2.4;
+ }
+ #taskListDay2{
+  align-items: center;
+  line-height: 2.4;
+ }
+ #taskListnight{
+  align-items: center;
+  line-height: 2.4;
+ }
+ #taskListnight2{
+  display: flex;
+  align-items: center;
+  line-height: 2.4;
+ }  */
