@@ -1,0 +1,79 @@
+// FIREBASE DATABASE REALTIMEEE
+var database = firebase.database();
+
+var taskListDay = document.getElementById("taskListDay");
+
+function addTask(timeOfDay) {  
+  const task = drawTask(timeOfDay);
+  console.log(task);
+  const database = firebase.database();
+
+  // Save the data to the Realtime Database
+  const tasksRef = database.ref('tasks');
+  tasksRef.push({
+    task: task,
+    date: new Date().toLocaleDateString("en-US", { day: 'numeric', month: 'numeric', year: 'numeric' }),
+    type: timeOfDay,
+    checkboxValue: false // Dodaj wartość początkową checkboxa
+  });
+}
+
+// A function to retrieve and display the Tasks from the Firebase database
+function displayTasks() {
+  // Get a reference to the 'complaints' child node
+  var tasksRef = database.ref('tasks');
+
+  // Add an event listener that fires when the value of the 'complaints' child node changes
+  tasksRef.on('value', function(snapshot) {
+
+    taskListDay.innerHTML = "";
+    taskListDay2.innerHTML = "";
+    taskListnight.innerHTML = "";
+    taskListnight2.innerHTML = "";
+
+    // Get the complaints from the snapshot
+    var tasks = snapshot.val();
+
+    // Iterate over the complaints and add them to the table
+    for (var taskKey in tasks) {
+      // Get the complaint data
+      var taskObject = tasks[taskKey];
+      var task = taskObject.task;
+      var date = taskObject.date;
+      var checkboxValue = taskObject.checkboxValue; // Pobierz wartość checkboxa z bazy danych
+      if (taskObject.type == 'day') {
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = date + ' ' + task + ' ';
+        newDiv.innerHTML += "<input type='checkbox' id='checkbox" + taskKey + "'>"; // Dodaj unikalne id checkboxa
+        newDiv.classList.add("zadanie");
+        taskListDay.appendChild(newDiv);
+        // Ustaw wartość początkową checkboxa na podstawie wartości z bazy danych
+        document.getElementById("checkbox" + taskKey).checked = checkboxValue;
+        // Dodaj nasłuchiwanie na zmianę stanu checkboxa i aktualizuj wartość w bazie danych
+        document.getElementById("checkbox_" + taskKey).addEventListener("change", function() {
+         const newCheckboxValue = document.getElementById("checkbox_" + taskKey).checked;
+         database.ref('tasks/' + taskKey + '/checkboxValue').set(newCheckboxValue);       
+        });
+      }else if (taskObject.type == 'day2') {
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = date + ' ' + task + ' ';
+        newDiv.innerHTML += "<input type='checkbox'>";
+        newDiv.classList.add("zadanie");
+        taskListDay2.appendChild(newDiv);
+      } else if (taskObject.type == 'night') {
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = date + ' ' + task + ' ';
+        newDiv.innerHTML += "<input type='checkbox'>";
+        newDiv.classList.add("zadanie");
+        taskListnight.appendChild(newDiv);
+      }else if (taskObject.type == 'night2') {
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = date + ' ' + task + ' ';
+        newDiv.innerHTML += "<input type='checkbox'>";
+        newDiv.classList.add("zadanie");
+        taskListnight2.appendChild(newDiv);
+      }}
+    });
+  }
+  
+  window.onload = displayTasks;

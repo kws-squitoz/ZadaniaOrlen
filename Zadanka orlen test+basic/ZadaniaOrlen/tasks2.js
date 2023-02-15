@@ -78,7 +78,7 @@ function addTask(timeOfDay) {
     type: timeOfDay,
   });
 }
-// A function to retrieve and display the complaints from the Firebase database
+// A function to retrieve and display the Tasks from the Firebase database
 function displayTasks() {
   // Get a reference to the 'complaints' child node
   var tasksRef = database.ref('tasks');
@@ -100,28 +100,32 @@ function displayTasks() {
       var taskObject = tasks[taskKey];
       var task = taskObject.task;
       var date = taskObject.date;
-
-      if(taskObject.type =='day' ){
-        taskListDay.innerHTML += ' '+date;
-        taskListDay.innerHTML += ' '+task;
-        taskListDay.innerHTML += "<br>";
-         }
-   else if(taskObject.type =='day2'){
-      taskListDay2.innerHTML += task;
-      taskListDay2.innerHTML += ' '+date;
-      taskListDay2.innerHTML += "<br>";
-      }
-      else if(taskObject.type =='night'){
-      taskListnight.innerHTML += task ;
-      taskListnight.innerHTML += ' '+date;
-      taskListnight.innerHTML += "<br>";
-      }else if(taskObject.type =='night2'){
-      taskListnight2.innerHTML += task;
-      taskListnight2.innerHTML += ' '+date;
-      taskListnight2.innerHTML += "<br>";
-      }
-    }
-  });
-}
-window.onload = displayTasks;
+      if (taskObject.type == 'day') {
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = date + ' ' + task + ' ';
+        newDiv.innerHTML += "<input type='checkbox' id='myCheckbox'>";
+        newDiv.classList.add("zadanie");
+        taskListDay.appendChild(newDiv);
+      } else if (taskObject.type == 'day2') {
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = date + ' ' + task + ' ';
+        newDiv.innerHTML += "<input type='checkbox'>";
+        newDiv.classList.add("zadanie");
+        taskListDay2.appendChild(newDiv);
+      } else if (taskObject.type == 'night') {
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = date + ' ' + task + ' ';
+        newDiv.innerHTML += "<input type='checkbox'>";
+        newDiv.classList.add("zadanie");
+        taskListnight.appendChild(newDiv);
+      } else if (taskObject.type == 'night2') {
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = date + ' ' + task + ' ';
+        newDiv.innerHTML += "<input type='checkbox'>";
+        newDiv.classList.add("zadanie");
+        taskListnight2.appendChild(newDiv);
+      }}
+    });
+  }
   
+  window.onload = displayTasks;

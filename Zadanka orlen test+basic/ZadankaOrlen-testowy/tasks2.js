@@ -98,7 +98,6 @@ function displayTasks() {
       var task = taskObject.task;
       var date = taskObject.date;
       var status = taskObject.status;
-      
 
       if(taskObject.type =='day' )
       {
