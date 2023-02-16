@@ -9,13 +9,19 @@ navbarToggler.addEventListener('click', function() {
     navbarNav.style.display = 'block';
   }
 });
-const tasks = {
+var tasks = {
      day: ['Proszę umyć regał z soczkami i sprawdzić daty oraz planogram', 'Proszę umyć regał nowości,sprawdzić daty oraz planogram', 'Proszę umyć regał z energetykami i sprawdzić daty oraz planogram', 'Proszę umyć impulsy z gumami/batonami i sprawdzić daty oraz planogram', 'Proszę umyć regał z olejami oraz sprawdzić planogram','Proszę umyć regał z akcesorami samochodowymi oraz sprawdzić planogram','Proszę umyć stojak patriotyczny wdrożyć i sprawdzić planogram','Proszę ułożyc magazyn suchy(mleko,sosy) według zasad FIFO','Proszę umyć regał z czekoladami i sprawdzić daty oraz planogram',],
      day2: ['Proszę umyć regał z Chipsami i sprawdzić daty oraz planogram', 'Proszę umyć regał z Chemią oraz zabawkami i sprawdzić planogram', 'Proszę umyć impulsy verva i sprawdzić daty oraz planogram', 'Proszę umyć impulsy prince polo i sprawdzić daty oraz planogram', 'Proszę umyć regał z ciastkami i sprawdzić daty oraz planogram','Proszę doprowadzić strefe kuchni/szatni do porządku','Prosze doprowadzić kącik gospodarczy do porządku umyć ściany poukładać chemie na półkach,puste butelki po płynach wyrzucić',],
      night:  ['Proszę umyć chłodnie przy kasie z zapiekankami pizzą itp', 'Proszę przejść się po sklepie z kolektorem posprawdzać cenówki,sprawdzić czy plakaty dalej obowiązują gdzie nie ma cenówek je dorobić w odpowiednim kolorze', 'Proszę doprowadzić do porządku strefe zakasową(przetrzeć kurze,zrobić porządek w szafkach z zarówkami itp.)oraz przemyć pleksi(jeśli dalej obowiązują)', 'Proszę gruntownie przemyć toalete pracowniczą','Proszę doprowadzić biuro do porządku,zrobić porządek z papierami itp)'],
      night2: ['Proszę umyć chłodnie z piwem(3 górne półki),sprawdzić daty oraz planogram', 'Proszę umyć chłodnie z napojami kolorowymi ,sprawdzić daty oraz planogram', 'Proszę umyć chłodnie z nabiałem i wodą,sprawdzić daty oraz planogram', 'Proszę umyć lodówke z energetykami,proszę sprawdzić planogram oraz daty','Proszę sprawdzić regał z alkoholami ułożyć według planogramów i według zasady fifo', 'Proszę ułożyć piwa w korytarzu(pełne zgrzewki obok pełnych zgrzewek,pomieszane obok siebie)','Proszę umyć regał z napojami kolorowymi przy kasie i sprawdzić daty oraz planogram','Proszę umyć regał przy kasie z wodami i sprawdzić daty oraz planogram','Proszę umyć chłodnie z piwem(3 dolne półki),sprawdzić daty oraz planogram','Proszę umyć zamrażalke z lodami ułożyć według planogramu','Proszę o uprzatnięcie magazynu półki z piwami','Proszę umyć chłodnie z energetykami,sprawdzić daty oraz planogram','Proszę o uprzatnięcie magazynu półki z energetykami','Proszę o uprzatnięcie magazynu półki z wodą i ciastkami','Proszę o uprzatnięcie magazynu półka z napojami kolorowymi','Proszę o uprzatnięcie magazynu półka z produktami z krótką datą ważności','Proszę o uprzatnięcie strefy drzwi wejściowych oraz okien za lodówkami przy kasie'],
    };
- let drawnTasks = {
+  //  const tasks = {
+  //   day: ['umyj kibel', 'umyj kibel', 'lodowke umyj', 'nasz kibel', 'kibellos'],
+  //   day2: ['1', '2', '3', '4', '5'],
+  //   night: ['x', 'z', 'c', 'b', 'd'],
+  //   night2: ['sadasd', 'dsadas', 'dasdsa umyj', 'dsadas', 'dasda'],
+  // };
+ var drawnTasks = {
    day: [],
    night: [],
    day2:[],
@@ -23,20 +29,50 @@ const tasks = {
  };
  
  function drawTask(timeOfDay) {
-   if (tasks[timeOfDay].length === 0) {
-     alert('Niestety nie ma już wiecej zadań do zrobienia Wiola wszystko zrobiła już,odpocznij sobie ;)');
-     return;
-   }
-   const index = Math.floor(Math.random() * tasks[timeOfDay].length);
- 
-   const task = tasks[timeOfDay][index];
-   tasks[timeOfDay] = tasks[timeOfDay].slice
-  
-   (0, index).concat(tasks[timeOfDay].slice(index + 1));
-   drawnTasks[timeOfDay].push(task);
- 
-   return task;
-} 
+  if (tasks[timeOfDay].length === 0) {
+    alert(
+      "Niestety nie ma już więcej zadań do zrobienia. Wiola wszystko zrobiła już, odpocznij sobie ;)"
+    );
+    return;
+  }
+
+  // Get the list of already drawn tasks from localStorage for this shift
+  const drawnTasksForShift = localStorage.getItem(`drawnTasks.${timeOfDay}`);
+
+  let availableTasks = tasks[timeOfDay];
+
+  if (drawnTasksForShift) {
+    // If there are already drawn tasks for this shift, remove them from the available tasks
+    availableTasks = availableTasks.filter(
+      (task) => !drawnTasksForShift.includes(task)
+    );
+  }
+
+  // If there are no available tasks left for this shift, alert the user and return
+  if (availableTasks.length === 0) {
+    alert(
+      "Niestety nie ma już więcej zadań do zrobienia. Wiola wszystko zrobiła już, odpocznij sobie ;)"
+    );
+    return;
+  }
+
+  // Draw a random task from the available tasks
+  const index = Math.floor(Math.random() * availableTasks.length);
+  const task = availableTasks[index];
+
+  // Remove the drawn task from the available tasks and update the tasks array
+  tasks[timeOfDay] = availableTasks.filter((t) => t !== task);
+
+  // Add the drawn task to the list of tasks drawn for this shift in localStorage
+  const updatedDrawnTasks = drawnTasksForShift
+    ? `${drawnTasksForShift},${task}`
+    : task;
+  localStorage.setItem(`drawnTasks.${timeOfDay}`, updatedDrawnTasks);
+
+  // Add the drawn task to the drawnTasks object and return it
+  drawnTasks[timeOfDay].push(task);
+  return task;
+}
 const dayButton = document.getElementById('dayButton');
 const dayButton2 = document.getElementById('dayButton2');
 const nightButton = document.getElementById('nightButton');
