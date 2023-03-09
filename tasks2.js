@@ -13,14 +13,8 @@ var tasks = {
      day: ['Proszę umyć regał z soczkami i sprawdzić daty oraz planogram', 'Proszę umyć regał nowości,sprawdzić daty oraz planogram', 'Proszę umyć regał z energetykami i sprawdzić daty oraz planogram', 'Proszę umyć impulsy z gumami/batonami i sprawdzić daty oraz planogram', 'Proszę umyć regał z olejami oraz sprawdzić planogram','Proszę umyć regał z akcesorami samochodowymi oraz sprawdzić planogram','Proszę umyć stojak patriotyczny wdrożyć i sprawdzić planogram','Proszę ułożyc magazyn suchy(mleko,sosy) według zasad FIFO','Proszę umyć regał z czekoladami i sprawdzić daty oraz planogram',],
      day2: ['Proszę umyć regał z Chipsami i sprawdzić daty oraz planogram', 'Proszę umyć regał z Chemią oraz zabawkami i sprawdzić planogram', 'Proszę umyć impulsy verva i sprawdzić daty oraz planogram', 'Proszę umyć impulsy prince polo i sprawdzić daty oraz planogram', 'Proszę umyć regał z ciastkami i sprawdzić daty oraz planogram','Proszę doprowadzić strefe kuchni/szatni do porządku','Prosze doprowadzić kącik gospodarczy do porządku umyć ściany poukładać chemie na półkach,puste butelki po płynach wyrzucić',],
      night:  ['Proszę umyć chłodnie przy kasie z zapiekankami pizzą itp', 'Proszę przejść się po sklepie z kolektorem posprawdzać cenówki,sprawdzić czy plakaty dalej obowiązują gdzie nie ma cenówek je dorobić w odpowiednim kolorze', 'Proszę doprowadzić do porządku strefe zakasową(przetrzeć kurze,zrobić porządek w szafkach z zarówkami itp.)oraz przemyć pleksi(jeśli dalej obowiązują)', 'Proszę gruntownie przemyć toalete pracowniczą','Proszę doprowadzić biuro do porządku,zrobić porządek z papierami itp)'],
-     night2: ['Proszę umyć chłodnie z piwem(3 górne półki),sprawdzić daty oraz planogram', 'Proszę umyć chłodnie z napojami kolorowymi ,sprawdzić daty oraz planogram', 'Proszę umyć chłodnie z nabiałem i wodą,sprawdzić daty oraz planogram', 'Proszę umyć lodówke z energetykami,proszę sprawdzić planogram oraz daty','Proszę sprawdzić regał z alkoholami ułożyć według planogramów i według zasady fifo', 'Proszę ułożyć piwa w korytarzu(pełne zgrzewki obok pełnych zgrzewek,pomieszane obok siebie)','Proszę umyć regał z napojami kolorowymi przy kasie i sprawdzić daty oraz planogram','Proszę umyć regał przy kasie z wodami i sprawdzić daty oraz planogram','Proszę umyć chłodnie z piwem(3 dolne półki),sprawdzić daty oraz planogram','Proszę umyć zamrażalke z lodami ułożyć według planogramu','Proszę o uprzatnięcie magazynu półki z piwami','Proszę umyć chłodnie z energetykami,sprawdzić daty oraz planogram','Proszę o uprzatnięcie magazynu półki z energetykami','Proszę o uprzatnięcie magazynu półki z wodą i ciastkami','Proszę o uprzatnięcie magazynu półka z napojami kolorowymi','Proszę o uprzatnięcie magazynu półka z produktami z krótką datą ważności','Proszę o uprzatnięcie strefy drzwi wejściowych oraz okien za lodówkami przy kasie'],
+     night2: ['Proszę umyć chłodnie z piwem(3 górne półki),sprawdzić daty oraz planogram', 'Proszę umyć chłodnie z napojami kolorowymi ,sprawdzić daty oraz planogram', 'Proszę umyć chłodnie z nabiałem i wodą,sprawdzić daty oraz planogram', 'Proszę umyć lodówke z energetykami,proszę sprawdzić planogram oraz daty','Proszę sprawdzić regał z alkoholami ułożyć według planogramów i według zasady fifo', 'Proszę ułożyć piwa w korytarzu(pełne zgrzewki obok pełnych zgrzewek,pomieszane obok siebie)','Proszę umyć regał z napojami kolorowymi przy kasie i sprawdzić daty oraz planogram','Proszę umyć regał przy kasie z wodami i sprawdzić daty oraz planogram','Proszę umyć chłodnie z piwem(3 dolne półki),sprawdzić daty oraz planogram','Proszę umyć zamrażalke z lodami ułożyć według planogramu','Proszę umyć chłodnie z energetykami,sprawdzić daty oraz planogram','Proszę o uprzatnięcie strefy drzwi wejściowych oraz okien za lodówkami przy kasie'],
    };
-  //  const tasks = {
-  //   day: ['umyj kibel', 'umyj kibel', 'lodowke umyj', 'nasz kibel', 'kibellos'],
-  //   day2: ['1', '2', '3', '4', '5'],
-  //   night: ['x', 'z', 'c', 'b', 'd'],
-  //   night2: ['sadasd', 'dsadas', 'dasdsa umyj', 'dsadas', 'dasda'],
-  // };
  var drawnTasks = {
    day: [],
    night: [],
@@ -42,7 +36,7 @@ var tasks = {
   let availableTasks = tasks[timeOfDay];
 
   if (drawnTasksForShift) {
-    // If there are already drawn tasks for this shift, remove them from the available tasks
+
     availableTasks = availableTasks.filter(
       (task) => !drawnTasksForShift.includes(task)
     );
@@ -60,7 +54,6 @@ var tasks = {
   const index = Math.floor(Math.random() * availableTasks.length);
   const task = availableTasks[index];
 
-  // Remove the drawn task from the available tasks and update the tasks array
   tasks[timeOfDay] = availableTasks.filter((t) => t !== task);
 
   // Add the drawn task to the list of tasks drawn for this shift in localStorage
@@ -95,7 +88,7 @@ nightButton2.addEventListener('click', () => {
   addTask('night2');
 }});
 
-// FIREBASE DATABASE REALTIMEEE
+// FIREBASE DATABASE REALTIME
 var database = firebase.database();
 
 var taskListDay = document.getElementById("taskListDay");
@@ -105,21 +98,17 @@ function addTask(timeOfDay) {
    console.log(task)
   const database = firebase.database();
 
-
   // Save the data to the Realtime Database
   const tasksRef = database.ref('tasks');
   tasksRef.push({
     task: task,
-    date: new Date().toLocaleDateString("en-US", { month: 'numeric',day: 'numeric', year: 'numeric' }),
+    date: new Date().toLocaleDateString("en-US", { day: 'numeric', month: 'numeric', year: 'numeric' }),
     type: timeOfDay,
   });
 }
-// A function to retrieve and display the Tasks from the Firebase database
 function displayTasks() {
-  // Get a reference to the 'complaints' child node
   var tasksRef = database.ref('tasks');
 
-  // Add an event listener that fires when the value of the 'complaints' child node changes
   tasksRef.on('value', function(snapshot) {
 
     taskListDay.innerHTML = "";
@@ -127,7 +116,6 @@ function displayTasks() {
     taskListnight.innerHTML = "";
     taskListnight2.innerHTML = "";
 
-    // Get the complaints from the snapshot
     var tasks = snapshot.val();
 
     // Iterate over the complaints and add them to the table
@@ -139,29 +127,63 @@ function displayTasks() {
       if (taskObject.type == 'day') {
         const newDiv = document.createElement("div");
         newDiv.innerHTML = date + ' ' + task + ' ';
-        // newDiv.innerHTML += "<input type='checkbox' id='myCheckbox'>";
         newDiv.classList.add("zadanie");
         taskListDay.appendChild(newDiv);
       } else if (taskObject.type == 'day2') {
         const newDiv = document.createElement("div");
         newDiv.innerHTML = date + ' ' + task + ' ';
-        // newDiv.innerHTML += "<input type='checkbox'>";
         newDiv.classList.add("zadanie");
         taskListDay2.appendChild(newDiv);
       } else if (taskObject.type == 'night') {
         const newDiv = document.createElement("div");
         newDiv.innerHTML = date + ' ' + task + ' ';
-        // newDiv.innerHTML += "<input type='checkbox'>";
         newDiv.classList.add("zadanie");
         taskListnight.appendChild(newDiv);
       } else if (taskObject.type == 'night2') {
         const newDiv = document.createElement("div");
         newDiv.innerHTML = date + ' ' + task + ' ';
-        // newDiv.innerHTML += "<input type='checkbox'>";
         newDiv.classList.add("zadanie");
         taskListnight2.appendChild(newDiv);
       }}
     });
   }
+  console.log(tasks.day.length)
+  console.log(tasks.day2.length)
+  console.log(tasks.night.length)
+  console.log(tasks.night2.length)
+
+  let storedDataDay = localStorage.getItem('drawnTasks.day');
+  let dataArrayDay = storedDataDay.split(',');
+  let dataLengthDay = dataArrayDay.length;
+  console.log(`${dataLengthDay}`);
+
+  let storedDataDay2 = localStorage.getItem('drawnTasks.day2');
+  let dataArrayDay2 = storedDataDay2.split(',');
+  let dataLengthDay2 = dataArrayDay2.length;
+  console.log(`${dataLengthDay2}`);
+
+  let storedDataNight = localStorage.getItem('drawnTasks.night');
+  let dataArrayNight = storedDataNight.split(',');
+  let dataLengthNight = dataArrayNight.length;
+  console.log(`${dataLengthNight}`);
+
+  let storedDataNight2 = localStorage.getItem('drawnTasks.night2');
+  let dataArrayNight2 = storedDataNight2.split(',');
+  let dataLengthNight2 = dataArrayNight2.length;
+  console.log(`${dataLengthNight2}`);
+
+  document.getElementById("tasksLeftDay").innerHTML =" " + (tasks.day.length - dataLengthDay);
   
+  document.getElementById("tasksLeftDay2").innerHTML =" " + (tasks.day2.length - dataLengthDay2);
+
+  document.getElementById("tasksLeftNight").innerHTML =" " + (tasks.night.length - dataLengthNight);
+
+  document.getElementById("tasksLeftNight2").innerHTML =" " + (tasks.night2.length - dataLengthNight2);
+
   window.onload = displayTasks;
+
+
+ 
+  
+  
+  

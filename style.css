@@ -18,18 +18,22 @@ body{
    font-size: 24px;
  }
  #taskListDay{
+  align-items: center;
   line-height: 2.4;
  }
  #taskListDay2{
+  align-items: center;
   line-height: 2.4;
  }
  #taskListnight{
+  align-items: center;
   line-height: 2.4;
  }
  #taskListnight2{
+  align-items: center;
   line-height: 2.4;
  }
  .zadanie{
-  text-align:left;
-  border-bottom:0.5px solid #654f4f;;
+  text-align: center;
+  border-bottom:1px solid #654f4f;;
  }
